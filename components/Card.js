@@ -3,10 +3,12 @@ import {StyleSheet, Text, View, Image} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Barcode from 'react-native-barcode-builder'
 import Avatar from 'react-native-user-avatar'
+import * as Animatable from 'react-native-animatable'
+
 export default class Card extends Component{
   render() {
     return (
-      <View style={styles.container}>
+      <Animatable.View style={styles.container} animation="slideInUp">
 
         <View style={styles.card}>
           <View style={styles.left}>
@@ -18,15 +20,41 @@ export default class Card extends Component{
             </View>
           </View>
           <View style={styles.right}>
-            <Text style={styles.discount}>3.00 SR</Text>
-            <Text style={styles.desc}>العرض يشمل وجبات البرجر فقط العرض يشمل وجبات </Text>
+            <Text style={styles.discount}>-3.00 SR</Text>
+            <Text style={styles.desc}>وجبة رزيتو ورق العنب</Text>
+            {
+
             <View style={styles.barcodeContainer}>
-              <Barcode value="142632" format="CODE128" width={2} height={25} style={styles.barcode}/>
+              <Barcode value="142632" format="CODE128" lineColor="#000" width={2} height={20} style={styles.barcode}/>
             </View>
+
+            }
           </View>
         </View>
 
-      </View>
+        <View style={styles.card}>
+          <View style={styles.left}>
+            <View style={styles.logoHolder}>
+              <Avatar size="60" name="Noodella" />
+            </View>
+            <View style={styles.storeName}>
+              <Text style={styles.storeNameText}>نوديلا</Text>
+            </View>
+          </View>
+          <View style={styles.right}>
+            <Text style={styles.discount}>-2.00 SR</Text>
+            <Text style={styles.desc}>نودلز الدجاج بصلصة الترياكي</Text>
+            {
+
+            <View style={styles.barcodeContainer}>
+              <Barcode value="773695" format="CODE128" lineColor="#000" width={2} height={20} style={styles.barcode}/>
+            </View>
+
+            }
+          </View>
+        </View>
+
+      </Animatable.View>
     )
   }
 }
@@ -85,7 +113,8 @@ const styles = StyleSheet.create({
   desc:{
     textAlign: 'right',
     fontFamily: "GE Thameen",
-    marginTop: 10
+    marginTop: 10,
+    fontSize: 16
   },
   barcodeContainer:{
     paddingLeft: 10

@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text, View, StatusBar, Image} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import * as Animatable from 'react-native-animatable'
 
 export default class Header extends Component{
   render() {
     return (
-      <View style={styles.container}>
+      <Animatable.View style={styles.container} animation="slideInDown">
         <StatusBar backgroundColor="blue" barStyle="light-content" />
         <View style={styles.left}>
           <Icon name="ios-settings" size={30} color="#fff" />
@@ -19,7 +20,7 @@ export default class Header extends Component{
         <View style={styles.right}>
           <Icon name="ios-wallet" size={30} color="#fff" />
         </View>
-      </View>
+      </Animatable.View>
     )
   }
 }
