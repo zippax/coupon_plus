@@ -13,44 +13,36 @@ export default class Card extends Component{
         <View style={styles.card}>
           <View style={styles.left}>
             <View style={styles.logoHolder}>
-              <Avatar size="60" name="Lavatchi" />
+              {
+              //  <Avatar size="60" name="SQ" />
+              }
+              <Image
+                  source={require('./../images/restLogo.jpg')}
+                  style={{ borderRadius: 30, width: 60, height: 60 }}
+              />
             </View>
             <View style={styles.storeName}>
               <Text style={styles.storeNameText}>لافاتشي</Text>
+              <View style={styles.barcodeContainer}>
+                <Barcode value="142632" format="CODE128" lineColor="#000" width={1} height={20} style={styles.barcode}/>
+              </View>
             </View>
           </View>
           <View style={styles.right}>
-            <Text style={styles.discount}>-3.00 SR</Text>
-            <Text style={styles.desc}>وجبة رزيتو ورق العنب</Text>
-            {
-
-            <View style={styles.barcodeContainer}>
-              <Barcode value="142632" format="CODE128" lineColor="#000" width={2} height={20} style={styles.barcode}/>
+            <View style={styles.pricetagHolder}>
+              <Text style={styles.discount}>- 3.00 SR</Text>
+              <Icon name="ios-pricetag" size={20} color="#EE3A59" style={{marginLeft: 10}}/>
             </View>
-
-            }
-          </View>
-        </View>
-
-        <View style={styles.card}>
-          <View style={styles.left}>
-            <View style={styles.logoHolder}>
-              <Avatar size="60" name="Noodella" />
+            <Text style={styles.desc}>وجبة البرجر بالباربيكيو اليابانية</Text>
+            <View style={styles.footer}>
+              <View style={styles.added}>
+                <Text style={styles.addedText}>اضافة الكوبون</Text>
+                <Icon name="ios-add" size={20} color="#fff" style={{marginLeft: 10}}/>
+              </View>
+              <View style={styles.qty}>
+                <Icon name="ios-eye-off" size={20} color="#222" />
+              </View>
             </View>
-            <View style={styles.storeName}>
-              <Text style={styles.storeNameText}>نوديلا</Text>
-            </View>
-          </View>
-          <View style={styles.right}>
-            <Text style={styles.discount}>-2.00 SR</Text>
-            <Text style={styles.desc}>نودلز الدجاج بصلصة الترياكي</Text>
-            {
-
-            <View style={styles.barcodeContainer}>
-              <Barcode value="773695" format="CODE128" lineColor="#000" width={2} height={20} style={styles.barcode}/>
-            </View>
-
-            }
           </View>
         </View>
 
@@ -107,16 +99,55 @@ const styles = StyleSheet.create({
   discount:{
     textAlign: 'right',
     fontSize: 16,
-    color: '#00A4E7',
+    color: '#EE3A59',
     fontWeight: '900'
   },
   desc:{
     textAlign: 'right',
     fontFamily: "GE Thameen",
     marginTop: 10,
-    fontSize: 16
+    fontSize: 16,
+  },
+  pricetagHolder:{
+    flexDirection: 'row',
+    alignSelf: 'flex-end'
   },
   barcodeContainer:{
-    paddingLeft: 10
+    paddingLeft: 0,
+    marginTop: -10,
+    zIndex: -1
+  },
+  footer:{
+    flexDirection: 'row',
+    marginTop: 10
+  },
+  added:{
+    flexDirection: 'row',
+    backgroundColor: '#11CC6D',
+    alignSelf: 'center',
+    marginLeft: 10,
+    paddingHorizontal:20,
+    paddingVertical: 5,
+    alignItems: 'center',
+    borderRadius: 50,
+    marginTop: 15
+  },
+  qty:{
+    backgroundColor: '#eee',
+    alignSelf: 'center',
+    marginLeft: 10,
+    paddingHorizontal:10,
+    paddingVertical: 5,
+    alignItems: 'center',
+    borderRadius: 50,
+    marginTop: 15
+  },
+  addedText:{
+    fontFamily: "GE Thameen",
+    color: '#fff'
+  },
+  qtyText:{
+    fontFamily: "GE Thameen",
+    color: '#000'
   }
 })

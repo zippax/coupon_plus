@@ -15,6 +15,16 @@ export default class Web extends Component{
   }
 
 
+
+  {
+  // Barcode
+  // <View style={styles.barcodeContainer}>
+  //   <Barcode value="142632" format="CODE128" lineColor="#000" width={2} height={20} style={styles.barcode}/>
+  // </View>
+  //
+  }
+
+
   render() {
     return (
       <View style={styles.container}>
