@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text, View, Image} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-
-
+import Barcode from 'react-native-barcode-builder'
+import Avatar from 'react-native-user-avatar'
 export default class Card extends Component{
   render() {
     return (
@@ -11,6 +11,7 @@ export default class Card extends Component{
         <View style={styles.card}>
           <View style={styles.left}>
             <View style={styles.logoHolder}>
+              <Avatar size="60" name="Lavatchi" />
             </View>
             <View style={styles.storeName}>
               <Text style={styles.storeNameText}>لافاتشي</Text>
@@ -18,7 +19,10 @@ export default class Card extends Component{
           </View>
           <View style={styles.right}>
             <Text style={styles.discount}>3.00 SR</Text>
-            <Text style={styles.desc}>العرض يشمل وجبات البرجر فقط</Text>
+            <Text style={styles.desc}>العرض يشمل وجبات البرجر فقط العرض يشمل وجبات </Text>
+            <View style={styles.barcodeContainer}>
+              <Barcode value="142632" format="CODE128" width={2} height={25} style={styles.barcode}/>
+            </View>
           </View>
         </View>
 
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
   logoHolder:{
     width: 60,
     height: 60,
-    backgroundColor: '#00A4E7',
+    backgroundColor: '#eee',
     borderRadius: 30,
     marginRight: 10
   },
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
   },
   discount:{
     textAlign: 'right',
-    fontSize: 20,
+    fontSize: 16,
     color: '#00A4E7',
     fontWeight: '900'
   },
@@ -82,5 +86,8 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     fontFamily: "GE Thameen",
     marginTop: 10
+  },
+  barcodeContainer:{
+    paddingLeft: 10
   }
 })
