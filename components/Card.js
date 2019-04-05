@@ -4,48 +4,63 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import Barcode from 'react-native-barcode-builder'
 import Avatar from 'react-native-user-avatar'
 import * as Animatable from 'react-native-animatable'
+import axios from 'axios'
 
 export default class Card extends Component{
-  render() {
-    return (
-      <Animatable.View style={styles.container} animation="slideInUp">
+  constructor(props){
+    super(props)
+    this.state = {coupons:[]}
+  }
+  componentDidMount(){
+    let v = Math.random().toString(36).substring(7);
 
-        <View style={styles.card}>
-          <View style={styles.left}>
-            <View style={styles.logoHolder}>
-              {
-              //  <Avatar size="60" name="SQ" />
-              }
-              <Image
-                  source={require('./../images/restLogo.jpg')}
-                  style={{ borderRadius: 30, width: 60, height: 60 }}
-              />
-            </View>
-            <View style={styles.storeName}>
-              <Text style={styles.storeNameText}>لافاتشي</Text>
-              <View style={styles.barcodeContainer}>
-                <Barcode value="142632" format="CODE128" lineColor="#000" width={1} height={20} style={styles.barcode}/>
-              </View>
-            </View>
+    axios.get('http://localhost/coupon/coupons.json.php?v='+v).then(response =>this.setState({coupons:response.data}));
+  }
+
+  render_coupons(){
+    return this.state.coupons.map(coupon =>
+      // Start Coupons Component
+      <View style={styles.card} key={coupon.id}>
+        <View style={styles.left}>
+          <View style={styles.logoHolder}>
+            <Image
+                source={{uri: coupon.logo}}
+                style={{ borderRadius: 30, width: 60, height: 60 }}
+            />
           </View>
-          <View style={styles.right}>
-            <View style={styles.pricetagHolder}>
-              <Text style={styles.discount}>- 3.00 SR</Text>
-              <Icon name="ios-pricetag" size={20} color="#EE3A59" style={{marginLeft: 10}}/>
-            </View>
-            <Text style={styles.desc}>وجبة البرجر بالباربيكيو اليابانية</Text>
-            <View style={styles.footer}>
-              <View style={styles.added}>
-                <Text style={styles.addedText}>اضافة الكوبون</Text>
-                <Icon name="ios-add" size={20} color="#fff" style={{marginLeft: 10}}/>
-              </View>
-              <View style={styles.qty}>
-                <Icon name="ios-eye-off" size={20} color="#222" />
-              </View>
+          <View style={styles.storeName}>
+            <Text style={styles.storeNameText}>{ coupon.store_name }</Text>
+            <View style={styles.barcodeContainer}>
+              <Barcode value= { coupon.coupon } format="CODE128" lineColor="#000" width={1} height={20} style={styles.barcode}/>
             </View>
           </View>
         </View>
+        <View style={styles.right}>
+          <View style={styles.pricetagHolder}>
+            <Text style={styles.discount}>- { coupon.discount } SR</Text>
+            <Icon name="ios-pricetag" size={18} color="#EE3A59" style={{marginLeft: 10}}/>
+          </View>
+          <Text style={styles.desc}>{ coupon.short_description }</Text>
+          <View style={styles.footer}>
+            <View style={styles.added}>
+              <Text style={styles.addedText}>اضافة الكوبون</Text>
+              <Icon name="ios-add" size={20} color="#fff" style={{marginLeft: 10}}/>
+            </View>
+            <View style={styles.qty}>
+              <Icon name="ios-eye" size={20} color="#222" />
+            </View>
+          </View>
+        </View>
+      </View>
 
+      // End Coupons Component
+    )
+  }
+
+  render() {
+    return (
+      <Animatable.View style={styles.container} animation="slideInUp">
+        { this.render_coupons() }
       </Animatable.View>
     )
   }
@@ -98,7 +113,7 @@ const styles = StyleSheet.create({
   },
   discount:{
     textAlign: 'right',
-    fontSize: 16,
+    fontSize: 14,
     color: '#EE3A59',
     fontWeight: '900'
   },
