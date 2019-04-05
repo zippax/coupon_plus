@@ -17,6 +17,10 @@ export default class Card extends Component{
     axios.get('http://localhost/coupon/coupons.json.php?v='+v).then(response =>this.setState({coupons:response.data}));
   }
 
+  insert(item_name){
+    alert(item_name)
+  }
+
   render_coupons(){
     return this.state.coupons.map(coupon =>
       // Start Coupons Component
@@ -43,7 +47,7 @@ export default class Card extends Component{
           <Text style={styles.desc}>{ coupon.short_description }</Text>
           <View style={styles.footer}>
             <View style={styles.added}>
-              <Text style={styles.addedText}>اضافة الكوبون</Text>
+              <Text style={styles.addedText} onPress={()=>this.insert(coupon.short_description)}>اضافة الكوبون</Text>
               <Icon name="ios-add" size={20} color="#fff" style={{marginLeft: 10}}/>
             </View>
             <View style={styles.qty}>
