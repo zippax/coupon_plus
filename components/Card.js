@@ -14,7 +14,7 @@ export default class Card extends Component{
   componentDidMount(){
     let v = Math.random().toString(36).substring(7);
 
-    axios.get('http://localhost/coupon/coupons.json.php?v='+v).then(response =>this.setState({coupons:response.data}));
+    axios.get('http://zippax.com/coupons.app/coupons.json.php?v='+v).then(response =>this.setState({coupons:response.data}));
   }
 
   insert(item_name){

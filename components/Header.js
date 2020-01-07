@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     height: 100,
-    paddingTop: 20,
-    paddingBottom: 10,
+    paddingTop: 50,
+    paddingBottom: 20,
     justifyContent: 'flex-end',
     flexDirection: 'row',
     zIndex: 3,
